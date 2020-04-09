@@ -1,0 +1,6 @@
+utn\frd\tp1vergara\entities\Clientes.class
+utn\frd\tp1vergara\rest\services\ApplicationConfig.class
+utn\frd\tp1vergara\sessions\AbstractFacade.class
+utn\frd\tp1vergara\sessions\ClientesFacade.class
+utn\frd\tp1vergara\resources\JavaEE8Resource.class
+utn\frd\tp1vergara\rest\services\ClientesRest.class
