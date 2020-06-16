@@ -8,14 +8,14 @@ package utn.frd.tp1vergara.sessions;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import utn.frd.tp1vergara.entities.Clientes;
+import utn.frd.tp1vergara.entities.Transacciones;
 
 /**
  *
  * @author Juan Manuel Vergara
  */
 @Stateless
-public class ClientesFacade extends AbstractFacade<Clientes> {
+public class TransaccionesFacade extends AbstractFacade<Transacciones> {
 
     @PersistenceContext(unitName = "jdbc/dds")
     private EntityManager em;
@@ -25,8 +25,8 @@ public class ClientesFacade extends AbstractFacade<Clientes> {
         return em;
     }
 
-    public ClientesFacade() {
-        super(Clientes.class);
+    public TransaccionesFacade() {
+        super(Transacciones.class);
     }
     
 }

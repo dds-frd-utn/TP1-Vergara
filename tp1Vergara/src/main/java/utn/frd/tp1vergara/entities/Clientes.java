@@ -26,66 +26,83 @@ import javax.validation.constraints.Size;
 @Table(name = "clientes")
 @NamedQueries({
     @NamedQuery(name = "Clientes.findAll", query = "SELECT c FROM Clientes c"),
-    @NamedQuery(name = "Clientes.findById", query = "SELECT c FROM Clientes c WHERE c.id = :id"),
-    @NamedQuery(name = "Clientes.findByNombre", query = "SELECT c FROM Clientes c WHERE c.nombre = :nombre"),
-    @NamedQuery(name = "Clientes.findByDireccion", query = "SELECT c FROM Clientes c WHERE c.direccion = :direccion")})
+    @NamedQuery(name = "Clientes.findByIdCliente", query = "SELECT c FROM Clientes c WHERE c.idCliente = :idCliente"),
+    @NamedQuery(name = "Clientes.findByNombreCliente", query = "SELECT c FROM Clientes c WHERE c.nombreCliente = :nombreCliente"),
+    @NamedQuery(name = "Clientes.findByDireccionCliente", query = "SELECT c FROM Clientes c WHERE c.direccionCliente = :direccionCliente"),
+    @NamedQuery(name = "Clientes.findByDniCliente", query = "SELECT c FROM Clientes c WHERE c.dniCliente = :dniCliente")})
 public class Clientes implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "id")
-    private Integer id;
+    @Column(name = "idCliente")
+    private Integer idCliente;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 255)
-    @Column(name = "nombre")
-    private String nombre;
-    @Size(max = 255)
-    @Column(name = "direccion")
-    private String direccion;
+    @Column(name = "nombreCliente")
+    private String nombreCliente;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 255)
+    @Column(name = "direccionCliente")
+    private String direccionCliente;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "dniCliente")
+    private int dniCliente;
 
     public Clientes() {
     }
 
-    public Clientes(Integer id) {
-        this.id = id;
+    public Clientes(Integer idCliente) {
+        this.idCliente = idCliente;
     }
 
-    public Clientes(Integer id, String nombre) {
-        this.id = id;
-        this.nombre = nombre;
+    public Clientes(Integer idCliente, String nombreCliente, String direccionCliente, int dniCliente) {
+        this.idCliente = idCliente;
+        this.nombreCliente = nombreCliente;
+        this.direccionCliente = direccionCliente;
+        this.dniCliente = dniCliente;
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getIdCliente() {
+        return idCliente;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setIdCliente(Integer idCliente) {
+        this.idCliente = idCliente;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getNombreCliente() {
+        return nombreCliente;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setNombreCliente(String nombreCliente) {
+        this.nombreCliente = nombreCliente;
     }
 
-    public String getDireccion() {
-        return direccion;
+    public String getDireccionCliente() {
+        return direccionCliente;
     }
 
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
+    public void setDireccionCliente(String direccionCliente) {
+        this.direccionCliente = direccionCliente;
+    }
+
+    public int getDniCliente() {
+        return dniCliente;
+    }
+
+    public void setDniCliente(int dniCliente) {
+        this.dniCliente = dniCliente;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        hash += (idCliente != null ? idCliente.hashCode() : 0);
         return hash;
     }
 
@@ -96,7 +113,7 @@ public class Clientes implements Serializable {
             return false;
         }
         Clientes other = (Clientes) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ((this.idCliente == null && other.idCliente != null) || (this.idCliente != null && !this.idCliente.equals(other.idCliente))) {
             return false;
         }
         return true;
@@ -104,7 +121,7 @@ public class Clientes implements Serializable {
 
     @Override
     public String toString() {
-        return "utn.frd.tp1vergara.entities.Clientes[ id=" + id + " ]";
+        return "utn.frd.tp1vergara.entities.Clientes[ idCliente=" + idCliente + " ]";
     }
     
 }

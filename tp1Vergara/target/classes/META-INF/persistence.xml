@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
-  <persistence-unit name="dds" transaction-type="JTA">
-    <jta-data-source>dds</jta-data-source>
+  <persistence-unit name="jdbc/dds" transaction-type="JTA">
+    <jta-data-source>jdbc/dds</jta-data-source>
+    <class>utn.frd.tp1vergara.entities.Cuentas</class>
+    <class>utn.frd.tp1vergara.entities.Clientes</class>
+    <class>utn.frd.tp1vergara.entities.Transaccion</class>
+    <class>utn.frd.tp1vergara.entities.Transacciones</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
   </persistence-unit>
 </persistence>

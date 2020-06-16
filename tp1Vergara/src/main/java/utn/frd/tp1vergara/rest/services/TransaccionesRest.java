@@ -21,38 +21,38 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-import utn.frd.tp1vergara.entities.Clientes;
-import utn.frd.tp1vergara.sessions.ClientesFacade;
+import utn.frd.tp1vergara.entities.Transacciones;
+import utn.frd.tp1vergara.sessions.TransaccionesFacade;
 
 /**
  *
  * @author Sergio
  */
-@Path("/clientes")
-public class ClientesRest {
+@Path("/transacciones")
+public class TransaccionesRest {
     @EJB
-    private ClientesFacade ejbClientesFacade;
+    private TransaccionesFacade ejbTransaccionesFacade;
     
     //obtener todas las entidades
     @GET
     @Produces({MediaType.APPLICATION_JSON})
-    public List<Clientes> findAll(){
-        return ejbClientesFacade.findAll();
+    public List<Transacciones> findAll(){
+        return ejbTransaccionesFacade.findAll();
     }
     
     //crear entidades
     @POST
     @Consumes({MediaType.APPLICATION_JSON})
-    public void create(Clientes clientes){
-        ejbClientesFacade.create(clientes);
+    public void create(Transacciones Transacciones){
+        ejbTransaccionesFacade.create(Transacciones);
     }
     
     //actualizar entidades
     @PUT
     @Consumes({MediaType.APPLICATION_JSON})
     @Path("/{id}")
-    public void edit(@PathParam("id")int id, Clientes clientes){
-        ejbClientesFacade.edit(clientes);
+    public void edit(@PathParam("id")int id, Transacciones transacciones){
+        ejbTransaccionesFacade.edit(transacciones);
     }
     
     //eliminar entidades
@@ -60,14 +60,14 @@ public class ClientesRest {
     @Consumes({MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
     @Path("/{id}")
     public void remove(@PathParam("id")int id){
-        ejbClientesFacade.remove( ejbClientesFacade.find(id) );
+        ejbTransaccionesFacade.remove( ejbTransaccionesFacade.find(id) );
     }
     
     //obtener una entidad por id
     @GET
     @Path("/{id}")
     @Produces({MediaType.APPLICATION_JSON})
-    public Clientes findById(@PathParam("id")int id){
-        return ejbClientesFacade.find(id);
+    public Transacciones findById(@PathParam("id")int id){
+        return ejbTransaccionesFacade.find(id);
     }
 }

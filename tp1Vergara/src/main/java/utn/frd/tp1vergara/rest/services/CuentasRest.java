@@ -1,9 +1,10 @@
+package utn.frd.tp1vergara.rest.services;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package utn.frd.tp1vergara.rest.services;
 
 /**
  *
@@ -21,38 +22,38 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-import utn.frd.tp1vergara.entities.Clientes;
-import utn.frd.tp1vergara.sessions.ClientesFacade;
+import utn.frd.tp1vergara.entities.Cuentas;
+import utn.frd.tp1vergara.sessions.CuentasFacade;
 
 /**
  *
  * @author Sergio
  */
-@Path("/clientes")
-public class ClientesRest {
+@Path("/cuentas")
+public class CuentasRest {
     @EJB
-    private ClientesFacade ejbClientesFacade;
+    private CuentasFacade ejbCuentasFacade;
     
     //obtener todas las entidades
     @GET
     @Produces({MediaType.APPLICATION_JSON})
-    public List<Clientes> findAll(){
-        return ejbClientesFacade.findAll();
+    public List<Cuentas> findAll(){
+        return ejbCuentasFacade.findAll();
     }
     
     //crear entidades
     @POST
     @Consumes({MediaType.APPLICATION_JSON})
-    public void create(Clientes clientes){
-        ejbClientesFacade.create(clientes);
+    public void create(Cuentas Cuentas){
+        ejbCuentasFacade.create(Cuentas);
     }
     
     //actualizar entidades
     @PUT
     @Consumes({MediaType.APPLICATION_JSON})
     @Path("/{id}")
-    public void edit(@PathParam("id")int id, Clientes clientes){
-        ejbClientesFacade.edit(clientes);
+    public void edit(@PathParam("id")int id, Cuentas cuentas){
+        ejbCuentasFacade.edit(cuentas);
     }
     
     //eliminar entidades
@@ -60,14 +61,14 @@ public class ClientesRest {
     @Consumes({MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
     @Path("/{id}")
     public void remove(@PathParam("id")int id){
-        ejbClientesFacade.remove( ejbClientesFacade.find(id) );
+        ejbCuentasFacade.remove( ejbCuentasFacade.find(id) );
     }
     
     //obtener una entidad por id
     @GET
     @Path("/{id}")
     @Produces({MediaType.APPLICATION_JSON})
-    public Clientes findById(@PathParam("id")int id){
-        return ejbClientesFacade.find(id);
+    public Cuentas findById(@PathParam("id")int id){
+        return ejbCuentasFacade.find(id);
     }
 }
