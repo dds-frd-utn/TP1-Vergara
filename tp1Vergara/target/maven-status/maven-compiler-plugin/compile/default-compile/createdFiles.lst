@@ -1,12 +1,14 @@
 utn\frd\tp1vergara\entities\Clientes.class
 utn\frd\tp1vergara\entities\Cuentas.class
-utn\frd\tp1vergara\rest\services\TransaccionesRest.class
-utn\frd\tp1vergara\sessions\TransaccionesFacade.class
+utn\frd\tp1vergara\entities\Movimientos.class
+utn\frd\tp1vergara\rest\services\MovimientosRest.class
 utn\frd\tp1vergara\sessions\AbstractFacade.class
+utn\frd\tp1vergara\sessions\MovimientosFacade.class
 utn\frd\tp1vergara\resources\JavaEE8Resource.class
 utn\frd\tp1vergara\rest\services\ApplicationConfig.class
 utn\frd\tp1vergara\rest\services\CuentasRest.class
+utn\frd\tp1vergara\rest\services\NewCrossOriginResourceSharingFilter.class
 utn\frd\tp1vergara\sessions\ClientesFacade.class
 utn\frd\tp1vergara\sessions\CuentasFacade.class
-utn\frd\tp1vergara\entities\Transacciones.class
+utn\frd\tp1vergara\entities\AbstractFacade.class
 utn\frd\tp1vergara\rest\services\ClientesRest.class
