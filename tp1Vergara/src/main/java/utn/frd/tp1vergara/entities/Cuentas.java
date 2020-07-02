@@ -43,7 +43,7 @@ public class Cuentas implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "saldo")
-    private long saldo;
+    private float saldo;
     @Basic(optional = false)
     @NotNull
     @Column(name = "idCliente")
@@ -61,7 +61,7 @@ public class Cuentas implements Serializable {
         this.idCuenta = idCuenta;
     }
 
-    public Cuentas(Integer idCuenta, long saldo, int idCliente, Date fechaApertura) {
+    public Cuentas(Integer idCuenta, float saldo, int idCliente, Date fechaApertura) {
         this.idCuenta = idCuenta;
         this.saldo = saldo;
         this.idCliente = idCliente;
@@ -76,11 +76,11 @@ public class Cuentas implements Serializable {
         this.idCuenta = idCuenta;
     }
 
-    public long getSaldo() {
+    public float getSaldo() {
         return saldo;
     }
 
-    public void setSaldo(long saldo) {
+    public void setSaldo(float saldo) {
         this.saldo = saldo;
     }
 

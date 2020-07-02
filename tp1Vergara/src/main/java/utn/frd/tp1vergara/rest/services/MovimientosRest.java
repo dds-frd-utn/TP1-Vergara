@@ -21,38 +21,38 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-import utn.frd.tp1vergara.entities.Cuentas;
-import utn.frd.tp1vergara.sessions.CuentasFacade;
+import utn.frd.tp1vergara.entities.Movimientos;
+import utn.frd.tp1vergara.sessions.MovimientosFacade;
 
 /**
  *
  * @author Sergio
  */
-@Path("/cuentas")
-public class CuentasRest {
+@Path("/movimientos")
+public class MovimientosRest {
     @EJB
-    private CuentasFacade ejbCuentasFacade;
+    private MovimientosFacade ejbMovimientosFacade;
     
     //obtener todas las entidades
     @GET
     @Produces({MediaType.APPLICATION_JSON})
-    public List<Cuentas> findAll(){
-        return ejbCuentasFacade.findAll();
+    public List<Movimientos> findAll(){
+        return ejbMovimientosFacade.findAll();
     }
     
     //crear entidades
     @POST
     @Consumes({MediaType.APPLICATION_JSON})
-    public void create(Cuentas cuentas){
-        ejbCuentasFacade.create(cuentas);
+    public void create(Movimientos movimientos){
+        ejbMovimientosFacade.create(movimientos);
     }
     
     //actualizar entidades
     @PUT
     @Consumes({MediaType.APPLICATION_JSON})
     @Path("/{id}")
-    public void edit(@PathParam("id")int id, Cuentas cuentas){
-        ejbCuentasFacade.edit(cuentas);
+    public void edit(@PathParam("id")int id, Movimientos movimientos){
+        ejbMovimientosFacade.edit(movimientos);
     }
     
     //eliminar entidades
@@ -60,14 +60,14 @@ public class CuentasRest {
     @Consumes({MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
     @Path("/{id}")
     public void remove(@PathParam("id")int id){
-        ejbCuentasFacade.remove( ejbCuentasFacade.find(id) );
+        ejbMovimientosFacade.remove( ejbMovimientosFacade.find(id) );
     }
     
     //obtener una entidad por id
     @GET
     @Path("/{id}")
     @Produces({MediaType.APPLICATION_JSON})
-    public Cuentas findById(@PathParam("id")int id){
-        return ejbCuentasFacade.find(id);
+    public Movimientos findById(@PathParam("id")int id){
+        return ejbMovimientosFacade.find(id);
     }
 }

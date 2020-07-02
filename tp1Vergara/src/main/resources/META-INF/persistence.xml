@@ -6,6 +6,7 @@
     <class>utn.frd.tp1vergara.entities.Clientes</class>
     <class>utn.frd.tp1vergara.entities.Transaccion</class>
     <class>utn.frd.tp1vergara.entities.Transacciones</class>
+    <class>utn.frd.tp1vergara.entities.Movimientos</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
   </persistence-unit>
 </persistence>

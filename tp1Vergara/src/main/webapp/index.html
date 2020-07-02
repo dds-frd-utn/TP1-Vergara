@@ -1,10 +1,47 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Start Page</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    </head>
-    <body>
-        <h1>Hello World!</h1>
-    </body>
+<head>
+  <meta charset="UTF-8">
+  <title>Grupo 6</title>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="crossorigin="anonymous"></script>
+  <script src="https://momentjs.com/downloads/moment.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  <link rel="stylesheet" href="./index.css">
+  <link rel="shortcut icon" href="#" />
+</head>
+<body>
+
+  <h1>Banco Plano</h1>
+  <h4>Slogan</h4>
+
+  
+  <span id="login">
+    <label>Ingrese numero de cuenta:</label><input type="number" id="inputIdCuenta" oninput="botonLoginDeshabilitado()">
+    <br/>
+    <label>Ingrese contraseña:</label><input type="password" id="inputContrasenia" oninput="botonLoginDeshabilitado()">
+    <br/>
+    <button id="botonLogin" disabled>Ingresar</button>
+  </span>
+  
+  <span id="bienvenida"></span>
+  <span id="botonera" class="escondido">
+    <button id="botonRetirar">Retirar</button>
+    </br>
+    <button id="botonDeposito">Depositar</button>
+    </br>
+    <button id="botonTransferencia">Transferir</button>
+    </br>
+    <button id="botonVerUltimosMovimientos">Ver ultimos movimientos</button>
+  </span>
+
+  <span id="retirar"></span>
+  <span id="deposito"></span>
+  <span id="transferencia"></span>
+  <span id="ultimosMovimientos"></span>
+  <span id="mensajeFinalizoOperacion"></span>
+
+
+  <script type="text/javascript" src="index.js"></script>
+</body>
 </html>
