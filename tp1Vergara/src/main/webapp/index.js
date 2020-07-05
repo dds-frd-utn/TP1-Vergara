@@ -1,5 +1,13 @@
 const impuesto = 1.21
 
+function volverAMenuPrincipal(){
+  $("#retirar").empty()
+  $("#deposito").empty()
+  $("#transferencia").empty()
+  $("#botonVolver").hide()
+  $("#botonera").show("slow")
+}
+
 //Login-------------------------------------------------------------------
 
 $("#botonLogin").click( function(){
@@ -71,11 +79,12 @@ function mostrarBotonera(data){
 }
 
 function gestionRetiro(event){
-
+  $("#botonVolver").show("slow")
+  $("#mensajeFinalizoOperacion").empty()
   $("#botonera").hide("slow")
   
   $("#retirar").append(`
-    <h2>Retirar</h2>
+    <h2>Gestion de retiro</h2>
     <label>Ingrese cantidad a retirar: <input type="number" id="montoARetirar" /> </label>
     </br>
     <button id="botonRetiro" diasbled>Retirar</button>
@@ -110,7 +119,7 @@ function gestionRetiro(event){
           $("#bienvenida").empty()
           $("#retirar").empty()
           mostrarMensajeBienvenida(jsonAEnviar)
-          $("#botonera").show()
+          $("#botonera").show("slow")
 
           //Agrego a movimientos
           var fechaMovimiento = moment.utc().format()
@@ -147,11 +156,12 @@ function gestionRetiro(event){
   
 
 function gestionDeposito(event){
-  
+  $("#botonVolver").show("slow")
+  $("#mensajeFinalizoOperacion").empty()
   $("#botonera").hide("slow")
   
   $("#deposito").append(`
-    <h2>Deposito</h2>
+    <h2Gestion de deposito</h2>
     <label>Ingrese cantidad a depositar: <input type="number" id="montoADepositar" /> </label>
     </br>
     <button id="botonDepositar">Depositar</button>
@@ -183,7 +193,7 @@ function gestionDeposito(event){
           $("#bienvenida").empty()
           $("#deposito").empty()
           mostrarMensajeBienvenida(jsonAEnviar)
-          $("#botonera").show()
+          $("#botonera").show("slow")
 
           //Agrego a movimientos
           var fechaMovimiento = moment.utc().format()
@@ -212,7 +222,10 @@ function gestionDeposito(event){
 
 
 function gestionTransferencia(event){
+  $("#botonVolver").show()
+  $("#mensajeFinalizoOperacion").empty()
   $("#botonera").hide("slow")
+
   var pantallaTransferencia = `
     <h2>Gestion de transferencia</h2>
     <label>Ingrese la cuenta a la cual desea transferir: <input id="cuentaDestino" type="number"> </label> 

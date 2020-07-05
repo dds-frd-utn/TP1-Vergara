@@ -12,34 +12,57 @@
 </head>
 <body>
 
-  <h1>Banco Plano</h1>
-  <h4>Slogan</h4>
-
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
   
-  <span id="login">
-    <label>Ingrese numero de cuenta:</label><input type="number" id="inputIdCuenta" oninput="botonLoginDeshabilitado()">
-    <br/>
-    <label>Ingrese contraseña:</label><input type="password" id="inputContrasenia" oninput="botonLoginDeshabilitado()">
-    <br/>
-    <button id="botonLogin" disabled>Ingresar</button>
-  </span>
   
-  <span id="bienvenida"></span>
-  <span id="botonera" class="escondido">
-    <button id="botonRetirar">Retirar</button>
-    </br>
-    <button id="botonDeposito">Depositar</button>
-    </br>
-    <button id="botonTransferencia">Transferir</button>
-    </br>
-    <button id="botonVerUltimosMovimientos">Ver ultimos movimientos</button>
-  </span>
+  <div class="row">
+    
+    <div class="col-6 d-flex justify-content-center" id="sectorIzquierdo">
+      <div class="row">
+        <div class="col-7">
+          <br/>
+          <br/>
+          <h1 id="titulo" >Banco Plano</h1>
+        </div>
+        <img src="./static/logo.png" alt="logo" id="logo" class="col-5" style="width:207px;height:209px;">
+      </div>
+    </div>
+    
+    <span class="col-6 d-flex justify-content-center" id="sectorDerecho">
+      <span id="login">
+        <label>Ingrese numero de cuenta:</label><input type="number" id="inputIdCuenta" oninput="botonLoginDeshabilitado()">
+        <br/>
+        <label>Ingrese contraseña:</label><input type="password" id="inputContrasenia" oninput="botonLoginDeshabilitado()">
+        <br/>
+        <button id="botonLogin" disabled>Ingresar</button>
+      </span>
 
-  <span id="retirar"></span>
-  <span id="deposito"></span>
-  <span id="transferencia"></span>
-  <span id="ultimosMovimientos"></span>
-  <span id="mensajeFinalizoOperacion"></span>
+      <div>
+        <span id="bienvenida"></span>
+        <span id="botonera" class="escondido">
+          <button id="botonRetirar">Retirar</button>
+          </br>
+          <button id="botonDeposito">Depositar</button>
+          </br>
+          <button id="botonTransferencia">Transferir</button>
+        </span>
+      
+        <span id="retirar"></span>
+        <span id="deposito"></span>
+        <span id="transferencia"></span>
+        <br/>
+        <br/>
+        <button id="botonVolver" onclick="volverAMenuPrincipal()" style="display: none">Volver</button>
+        <span id="mensajeFinalizoOperacion"></span>
+      </div>
+    </span>
+  </div>
 
 
   <script type="text/javascript" src="index.js"></script>
