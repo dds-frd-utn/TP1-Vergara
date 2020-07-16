@@ -1,4 +1,5 @@
 const impuesto = 1.21
+var urlCuenta
 
 function volverAMenuPrincipal(){
   $("#retirar").empty()
@@ -12,6 +13,7 @@ function volverAMenuPrincipal(){
 
 $("#botonLogin").click( function(){
   var urlApi = "http://localhost:8080/tp1Vergara/rest/cuentas/".concat($("#inputIdCuenta").val())
+  var urlCuenta = "http://localhost:8080/tp1Vergara/rest/cuentas/".concat($("#inputIdCuenta").val())
   $.ajax({
     url: urlApi,
     success: function(data){
@@ -91,66 +93,78 @@ function gestionRetiro(event){
     <span id="errorRetiro"></span>
   `)
 
-  //Cuando hago click en el boton 'Retirar' lanza el http request si cumple los requisitos de la linea 93
   $("#botonRetiro").on('click', event.data, function(event){
+    var nroCuenta = JSON.parse(event.data.data).idCuenta
+    var infoCuenta
 
-    var infoCuenta = JSON.parse(event.data.data)
-    var montoARetirar = Number($("#montoARetirar").val())
+    //Obtengo datos actualizados de la cuenta
+    $.ajax({
+      url: `http://localhost:8080/tp1Vergara/rest/cuentas/${nroCuenta}`,
+      type: 'GET',
+      contentType: "application/json",
+      success: function(data){
+        infoCuenta = data
 
-    if(montoARetirar>0 && montoARetirar<=infoCuenta.saldo){
-      
-      urlApi = `http://localhost:8080/tp1Vergara/rest/cuentas/${infoCuenta.idCuenta}`
-      var nuevoSaldo = infoCuenta.saldo - montoARetirar 
-      
-      var jsonAEnviar = `{
-        "idCuenta" : ${infoCuenta.idCuenta},
-        "saldo": ${nuevoSaldo},
-        "idCliente": ${infoCuenta.idCliente},
-        "fechaApertura": "${infoCuenta.fechaApertura}"
-      }`
-
-      $.ajax({
-        url: urlApi,
-        type: 'PUT',
-        contentType: "application/json",
-        data: jsonAEnviar,
-        success: function(data){
-          $("#mensajeFinalizoOperacion").append("<h2>Su retiro fue realizado</h2>")
-          $("#bienvenida").empty()
-          $("#retirar").empty()
-          mostrarMensajeBienvenida(jsonAEnviar)
-          $("#botonera").show("slow")
-
-          //Agrego a movimientos
-          var fechaMovimiento = moment.utc().format()
-
+        var montoARetirar = Number($("#montoARetirar").val())
+    
+        if(montoARetirar>0 && montoARetirar<=infoCuenta.saldo){
+          
+          urlApi = `http://localhost:8080/tp1Vergara/rest/cuentas/${infoCuenta.idCuenta}`
+          var nuevoSaldo = infoCuenta.saldo - montoARetirar 
+          
+          var jsonAEnviar = `{
+            "idCuenta" : ${infoCuenta.idCuenta},
+            "saldo": ${nuevoSaldo},
+            "idCliente": ${infoCuenta.idCliente},
+            "fechaApertura": "${infoCuenta.fechaApertura}"
+          }`
+    
           $.ajax({
-            url: "http://localhost:8080/tp1Vergara/rest/movimientos",
-            type: 'POST',
+            url: urlApi,
+            type: 'PUT',
             contentType: "application/json",
-            data: `{
-              "fecha" : "${fechaMovimiento}",
-              "idCuentaDestino": ${infoCuenta.idCuenta},
-              "idCuentaOrigen": ${infoCuenta.idCuenta},
-              "monto": ${-montoARetirar},
-              "descripcion": "Retiro de efectivo"
-            }`,
-            success: function(data){console.log("Agregado a transacciones")}
+            data: jsonAEnviar,
+            success: function(data){
+              $("#mensajeFinalizoOperacion").append("<h2>Su retiro fue realizado</h2>")
+              $("#bienvenida").empty()
+              $("#retirar").empty()
+              mostrarMensajeBienvenida(jsonAEnviar)
+              $("#botonera").show("slow")
+    
+              //Agrego a movimientos
+              var fechaMovimiento = moment.utc().format()
+    
+              $.ajax({
+                url: "http://localhost:8080/tp1Vergara/rest/movimientos",
+                type: 'POST',
+                contentType: "application/json",
+                data: `{
+                  "fecha" : "${fechaMovimiento}",
+                  "idCuentaDestino": ${infoCuenta.idCuenta},
+                  "idCuentaOrigen": ${infoCuenta.idCuenta},
+                  "monto": ${-montoARetirar},
+                  "descripcion": "Retiro de efectivo"
+                }`,
+                success: function(data){console.log("Agregado a transacciones")}
+              })
+            }
           })
         }
-      })
-    }
-  
-    else{
-      if(montoARetirar<0){
-        $("#errorRetiro").empty()
-        $("#errorRetiro").append("<span>El monto a retirar debe ser mayor a 0</span>")
+      
+        else{
+          if(montoARetirar<0){
+            $("#errorRetiro").empty()
+            $("#errorRetiro").append("<span>El monto a retirar debe ser mayor a 0</span>")
+          }
+          else{
+            $("#errorRetiro").empty()
+            $("#errorRetiro").append("<span>No dispone del dinero suficiente en esta cuenta</span>")
+          }
+        }
       }
-      else{
-        $("#errorRetiro").empty()
-        $("#errorRetiro").append("<span>No dispone del dinero suficiente en esta cuenta</span>")
-      }
-    }
+    })
+
+
   })
 }
   
@@ -168,8 +182,16 @@ function gestionDeposito(event){
   `)
 
   $("#botonDepositar").on('click', event.data, function(event){
-
-    var infoCuenta = JSON.parse(event.data.data)
+    var nroCuenta = JSON.parse(event.data.data).idCuenta
+    var infoCuenta
+    
+    //Obtengo datos actualizados de la cuenta
+    $.ajax({
+      url: `http://localhost:8080/tp1Vergara/rest/cuentas/${nroCuenta}`,
+      type: 'GET',
+      contentType: "application/json",
+      success: function(data){
+        infoCuenta = data
     var montoADepositar = Number($("#montoADepositar").val())
     
     if(montoADepositar>0){
@@ -214,6 +236,8 @@ function gestionDeposito(event){
         }
       })
     }
+  }
+    })
   })
 }
 
